@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Services\MoonShineReorderService;
 use App\Models\CourtCase;
 
 use MoonShine\Laravel\Enums\Action;
+use MoonShine\Laravel\MoonShineRequest;
 use MoonShine\Laravel\Resources\ModelResource;
 use MoonShine\Support\Enums\PageType;
+use MoonShine\Support\Enums\SortDirection;
 use MoonShine\Support\ListOf;
 use MoonShine\UI\Components\Layout\Box;
 use MoonShine\UI\Fields\ID;
@@ -29,6 +31,9 @@ class CourtCaseResource extends ModelResource
     protected string $title = 'Судебные дела';
     protected string $sortColumn = 'position';
     protected bool $usePagination = false;
+    protected SortDirection $sortDirection = SortDirection::ASC;
+
+    protected bool $createInModal = true;
 
     protected ?PageType $redirectAfterSave = PageType::INDEX;
 
@@ -44,11 +49,25 @@ class CourtCaseResource extends ModelResource
     protected function indexFields(): iterable
     {
         return [
-            ID::make()->sortable(),
-            Number::make('position')->sortable(),
-            Image::make('path'),
-            Text::make('path'),
         ];
+    }
+
+    public function modifyListComponent(ComponentContract $component): ComponentContract
+    {
+        return parent::modifyListComponent($component)
+            ->fields([
+                Number::make('Позиция','position')->sortable(),
+                Image::make('Превью','path'),
+                Text::make('Путь к изображению','path'),
+            ])
+            ->reorderable(
+                $this->getAsyncMethodUrl('reorder'),
+            );
+    }
+
+    public function reorder(MoonShineRequest $request): void
+    {
+        (new MoonShineReorderService())->run($request, $this);
     }
 
     /**
@@ -59,7 +78,7 @@ class CourtCaseResource extends ModelResource
         return [
             Box::make([
                 ID::make(),
-                Image::make('path')
+                Image::make('Изображение','path')
                     ->dir('court_case')
                     ->removable(),
             ])

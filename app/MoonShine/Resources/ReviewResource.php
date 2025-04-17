@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Services\MoonShineReorderService;
 use App\Models\Review;
 
 use MoonShine\Laravel\Enums\Action;
 use MoonShine\Laravel\MoonShineRequest;
 use MoonShine\Laravel\Resources\ModelResource;
 use MoonShine\Support\Enums\PageType;
+use MoonShine\Support\Enums\SortDirection;
 use MoonShine\Support\ListOf;
 use MoonShine\UI\Components\Layout\Box;
 use MoonShine\UI\Fields\ID;
@@ -19,7 +20,6 @@ use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\UI\Fields\Image;
 use MoonShine\UI\Fields\Number;
 use MoonShine\UI\Fields\Text;
-use MoonShine\UI\Fields\Url;
 
 /**
  * @extends ModelResource<Review>
@@ -31,6 +31,9 @@ class ReviewResource extends ModelResource
     protected string $title = 'Отзывы';
     protected string $sortColumn = 'position';
     protected bool $usePagination = false;
+    protected SortDirection $sortDirection = SortDirection::ASC;
+
+    protected bool $createInModal = true;
 
     protected ?PageType $redirectAfterSave = PageType::INDEX;
 
@@ -46,10 +49,6 @@ class ReviewResource extends ModelResource
     protected function indexFields(): iterable
     {
         return [
-            ID::make()->sortable(),
-            Number::make('position')->sortable(),
-            Image::make('path'),
-            Text::make('path'),
         ];
     }
 
@@ -57,10 +56,9 @@ class ReviewResource extends ModelResource
     {
         return parent::modifyListComponent($component)
             ->fields([
-                ID::make()->sortable(),
-                Number::make('position')->sortable(),
-                Image::make('path'),
-                Text::make('path'),
+                Number::make('Позиция','position')->sortable(),
+                Image::make('Превью', 'path'),
+                Text::make('Путь к изображению','path'),
             ])
             ->reorderable(
                 $this->getAsyncMethodUrl('reorder'),
@@ -69,15 +67,7 @@ class ReviewResource extends ModelResource
 
     public function reorder(MoonShineRequest $request): void
     {
-        if ($request->str('data')->isNotEmpty()) {
-            $request->str('data')->explode(',')->each(
-                fn($id, $position) => $this->getModel()
-                    ->where('id', $id)
-                    ->update([
-                        'position' => $position + 1,
-                    ]),
-            );
-        }
+        (new MoonShineReorderService())->run($request, $this);
     }
 
     /**
@@ -88,7 +78,7 @@ class ReviewResource extends ModelResource
         return [
             Box::make([
                 ID::make(),
-                Image::make('path')
+                Image::make('Изображение','path')
                     ->dir('review')
                     ->removable(),
             ])
@@ -101,7 +91,6 @@ class ReviewResource extends ModelResource
     protected function detailFields(): iterable
     {
         return [
-            ID::make(),
         ];
     }
 

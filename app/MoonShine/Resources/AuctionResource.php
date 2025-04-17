@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Services\MoonShineReorderService;
 use App\Models\Auction;
 
 use MoonShine\Laravel\MoonShineRequest;
 use MoonShine\Laravel\Resources\ModelResource;
+use MoonShine\Support\Enums\SortDirection;
 use MoonShine\UI\Components\Layout\Box;
-use MoonShine\UI\Components\Layout\Flex;
-use MoonShine\UI\Components\Link;
 use MoonShine\UI\Fields\ID;
 use MoonShine\Contracts\UI\FieldContract;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\UI\Fields\Image;
 use MoonShine\UI\Fields\Number;
-use MoonShine\UI\Fields\Preview;
 use MoonShine\UI\Fields\Text;
 use MoonShine\UI\Fields\Url;
 
@@ -31,6 +29,7 @@ class AuctionResource extends ModelResource
     protected string $title = 'Торги';
     protected string $sortColumn = 'position';
     protected bool $usePagination = false;
+    protected SortDirection $sortDirection = SortDirection::ASC;
 
     protected bool $createInModal = true;
     protected bool $editInModal = false;
@@ -49,11 +48,10 @@ class AuctionResource extends ModelResource
     {
         return parent::modifyListComponent($component)
             ->fields([
-                ID::make()->sortable(),
-                Number::make('position')->sortable(),
-                Text::make('title'),
-                Image::make('image'),
-                Url::make('link')->blank(),
+                Number::make('Позиция','position')->sortable(),
+                Text::make('Заголовок','title'),
+                Image::make('Превью','image'),
+                Url::make('Ссылка','link')->blank(),
             ])
             ->reorderable(
                 $this->getAsyncMethodUrl('reorder'),
@@ -62,14 +60,7 @@ class AuctionResource extends ModelResource
 
     public function reorder(MoonShineRequest $request): void
     {
-        $ids = $request->str('data')->explode(',')
-                ->each(
-                    fn($id, $position) => $this->getModel()
-                        ->where('id', $id)
-                        ->update([
-                            'position' => $position + 1,
-                        ]),
-                );
+        (new MoonShineReorderService())->run($request, $this);
     }
 
     /**
@@ -80,12 +71,12 @@ class AuctionResource extends ModelResource
         return [
             Box::make([
                 ID::make(),
-                Text::make('title'),
-                Text::make('description'),
-                Image::make('image')
+                Text::make('Заголовок','title'),
+                Text::make('Описание','description'),
+                Image::make('Изображение','image')
                     ->dir('auction')
                     ->removable(),
-                Url::make('link'),
+                Url::make('Ссылка','link'),
             ])
         ];
     }
@@ -97,12 +88,12 @@ class AuctionResource extends ModelResource
     {
         return [
             ID::make(),
-            Number::make('position'),
-            Text::make('title'),
-            Text::make('description'),
-            Image::make('image'),
-            Text::make('image'),
-            Url::make('link')->blank(),
+            Number::make('Позиция','position'),
+            Text::make('Заголовок','title'),
+            Text::make('Описание','description'),
+            Image::make('Изображение','image'),
+            Text::make('Путь к изображению','image'),
+            Url::make('Ссылка','link')->blank(),
         ];
     }
 
