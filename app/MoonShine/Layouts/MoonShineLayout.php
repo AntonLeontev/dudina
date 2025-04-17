@@ -15,6 +15,10 @@ use MoonShine\UI\Components\Layout\Flash;
 use MoonShine\UI\Components\Layout\Html;
 use MoonShine\UI\Components\Layout\Layout;
 use MoonShine\UI\Components\Layout\Wrapper;
+use App\MoonShine\Resources\ReviewResource;
+use MoonShine\MenuManager\MenuItem;
+use App\MoonShine\Resources\CourtCaseResource;
+use App\MoonShine\Resources\AuctionResource;
 
 final class MoonShineLayout extends AppLayout
 {
@@ -29,6 +33,9 @@ final class MoonShineLayout extends AppLayout
     {
         return [
             ...parent::menu(),
+            MenuItem::make('Reviews', ReviewResource::class),
+            MenuItem::make('CourtCases', CourtCaseResource::class),
+            MenuItem::make('Auctions', AuctionResource::class),
         ];
     }
 
