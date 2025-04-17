@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class CourtCase extends Model
 {
+    use HasFactory;
     protected $fillable = [
 
         'position',
@@ -13,10 +15,10 @@ class CourtCase extends Model
     ];
     protected static function booted(): void
     {
-        static::creating(function (User $user): void {
+        static::creating(function (CourtCase $courtCase): void {
 
             $lastPosition = self::max('position');
-            $user->position = $lastPosition ? $lastPosition + 1 : 1;
+            $courtCase->position = $lastPosition ? $lastPosition + 1 : 1;
         });
     }
 }

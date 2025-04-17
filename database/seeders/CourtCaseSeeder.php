@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Review;
+use App\Models\CourtCase;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ReviewSeeder extends Seeder
+class CourtCaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Review::factory()->count(10)->create();
+        CourtCase::factory()->count(10)->create();
     }
 }
