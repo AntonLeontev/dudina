@@ -34,9 +34,9 @@ final class MoonShineLayout extends AppLayout
     {
         return [
             ...parent::menu(),
-            MenuItem::make('Reviews', ReviewResource::class),
-            MenuItem::make('CourtCases', CourtCaseResource::class),
-            MenuItem::make('Auctions', AuctionResource::class),
+            MenuItem::make(__('moonshine::menu.Reviews'), ReviewResource::class),
+            MenuItem::make(__('moonshine::menu.CourtCases'), CourtCaseResource::class),
+            MenuItem::make(__('moonshine::menu.Auctions'), AuctionResource::class),
         ];
     }
 
