@@ -7,6 +7,7 @@ namespace App\MoonShine\Resources;
 use App\Services\MoonShineReorderService;
 use App\Models\Review;
 
+use Illuminate\Database\Eloquent\Model;
 use MoonShine\Laravel\Enums\Action;
 use MoonShine\Laravel\MoonShineRequest;
 use MoonShine\Laravel\Resources\ModelResource;
@@ -80,7 +81,10 @@ class ReviewResource extends ModelResource
                 ID::make(),
                 Image::make('Изображение','path')
                     ->dir('review')
-                    ->removable(),
+                    ->removable()
+                    ->onApply(function (Model $model, $value) {
+
+                    }),
             ])
         ];
     }
