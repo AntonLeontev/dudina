@@ -8,6 +8,9 @@ use App\Services\MoonShineReorderService;
 use App\Models\Review;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+use Intervention\Image\Encoders\WebpEncoder;
+use Intervention\Image\ImageManager;
 use MoonShine\Laravel\Enums\Action;
 use MoonShine\Laravel\MoonShineRequest;
 use MoonShine\Laravel\Resources\ModelResource;
@@ -83,6 +86,24 @@ class ReviewResource extends ModelResource
                     ->dir('review')
                     ->removable()
                     ->onApply(function (Model $model, $value) {
+                        $image = ImageManager::imagick()->read($value->getRealPath());
+                        $image->encode(new WebpEncoder(quality: 100));
+
+                        $mainDir = 'review';
+                        $filesPictureDir = storage_path('app/public/' . $mainDir);
+                        $filename = Str::uuid() . '.' . 'webp';
+
+                        $finalPath = $filesPictureDir . '/' . $filename;
+
+                        if(!file_exists($filesPictureDir)){
+                            mkdir($filesPictureDir, 0755, true);
+                        }
+
+                        $image->save($finalPath);
+
+                        $model->path = $mainDir . '/' . $filename;
+
+                        return $model;
 
                     }),
             ])
