@@ -53,3 +53,18 @@ php artisan migrate
 ```bash
 php artisan moonshine:user
 ```
+
+# Заполнить данными
+
+Заполнить список отзывов
+```bash
+php artisan db:seed --class=ReviewSeeder
+```
+Заполнить список судебных дел
+```bash
+php artisan db:seed --class=CourtCaseSeeder
+```
+Заполнить список торгов
+```bash
+php artisan db:seed --class=AuctionSeeder
+```
