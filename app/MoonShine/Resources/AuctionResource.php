@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
+use App\Services\MoonshineImageProcessingService;
 use App\Services\MoonShineReorderService;
 use App\Models\Auction;
 
+use Illuminate\Database\Eloquent\Model;
 use MoonShine\Laravel\MoonShineRequest;
 use MoonShine\Laravel\Resources\ModelResource;
 use MoonShine\Support\Enums\SortDirection;
@@ -34,6 +36,8 @@ class AuctionResource extends ModelResource
     protected bool $createInModal = true;
     protected bool $editInModal = false;
     protected bool $detailInModal = false;
+
+    public const AUCTION_IMAGES_DIR = 'auction';
 
     /**
      * @return list<FieldContract>
@@ -74,8 +78,11 @@ class AuctionResource extends ModelResource
                 Text::make('Заголовок','title'),
                 Text::make('Описание','description'),
                 Image::make('Изображение','image')
-                    ->dir('auction')
-                    ->removable(),
+                    ->dir(SELF::AUCTION_IMAGES_DIR)
+                    ->removable()
+                    ->onApply(function (Model $model, $value) {
+                        return (new MoonshineImageProcessingService())->run($model, $value, SELF::AUCTION_IMAGES_DIR);
+                    }),
                 Url::make('Ссылка','link'),
             ])
         ];

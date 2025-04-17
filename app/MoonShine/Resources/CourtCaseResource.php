@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
+use App\Services\MoonshineImageProcessingService;
 use App\Services\MoonShineReorderService;
 use App\Models\CourtCase;
 
+use Illuminate\Database\Eloquent\Model;
 use MoonShine\Laravel\Enums\Action;
 use MoonShine\Laravel\MoonShineRequest;
 use MoonShine\Laravel\Resources\ModelResource;
@@ -36,6 +38,8 @@ class CourtCaseResource extends ModelResource
     protected bool $createInModal = true;
 
     protected ?PageType $redirectAfterSave = PageType::INDEX;
+
+    public const COURT_CASE_IMAGES_DIR = 'court_case';
 
     protected function activeActions(): ListOf
     {
@@ -79,8 +83,11 @@ class CourtCaseResource extends ModelResource
             Box::make([
                 ID::make(),
                 Image::make('Изображение','path')
-                    ->dir('court_case')
-                    ->removable(),
+                    ->dir(SELF::COURT_CASE_IMAGES_DIR)
+                    ->removable()
+                    ->onApply(function (Model $model, $value) {
+                        return (new MoonshineImageProcessingService())->run($model, $value, SELF::COURT_CASE_IMAGES_DIR);
+                    })
             ])
         ];
     }

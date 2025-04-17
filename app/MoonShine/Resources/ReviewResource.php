@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
+use App\Services\MoonshineImageProcessingService;
 use App\Services\MoonShineReorderService;
 use App\Models\Review;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
-use Intervention\Image\Encoders\WebpEncoder;
-use Intervention\Image\ImageManager;
 use MoonShine\Laravel\Enums\Action;
 use MoonShine\Laravel\MoonShineRequest;
 use MoonShine\Laravel\Resources\ModelResource;
@@ -40,6 +38,8 @@ class ReviewResource extends ModelResource
     protected bool $createInModal = true;
 
     protected ?PageType $redirectAfterSave = PageType::INDEX;
+
+    public const REVIEW_IMAGES_DIR = 'review';
 
     protected function activeActions(): ListOf
     {
@@ -83,28 +83,10 @@ class ReviewResource extends ModelResource
             Box::make([
                 ID::make(),
                 Image::make('Изображение','path')
-                    ->dir('review')
+                    ->dir(SELF::REVIEW_IMAGES_DIR)
                     ->removable()
                     ->onApply(function (Model $model, $value) {
-                        $image = ImageManager::imagick()->read($value->getRealPath());
-                        $image->encode(new WebpEncoder(quality: 100));
-
-                        $mainDir = 'review';
-                        $filesPictureDir = storage_path('app/public/' . $mainDir);
-                        $filename = Str::uuid() . '.' . 'webp';
-
-                        $finalPath = $filesPictureDir . '/' . $filename;
-
-                        if(!file_exists($filesPictureDir)){
-                            mkdir($filesPictureDir, 0755, true);
-                        }
-
-                        $image->save($finalPath);
-
-                        $model->path = $mainDir . '/' . $filename;
-
-                        return $model;
-
+                        return (new MoonshineImageProcessingService())->run($model, $value, SELF::REVIEW_IMAGES_DIR);
                     }),
             ])
         ];
