@@ -50,7 +50,7 @@ return [
         'password' => 'Password',
     ],
     'resource' => [
-        'system' => 'System',
+        'system' => 'Система',
         'role' => 'Roles',
         'name' => 'Name',
         'email' => 'E-mail',
