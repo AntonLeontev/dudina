@@ -18,7 +18,7 @@ class ReviewFactory extends Factory
     public function definition(): array
     {
         return [
-            'path' => Str::random(10),
+            'path' => $this->faker->imageUrl(),
         ];
     }
 }

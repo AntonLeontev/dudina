@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Auction extends Model
 {
+    use HasFactory;
     protected $fillable = [
 
         'position',
@@ -16,10 +18,10 @@ class Auction extends Model
     ];
     protected static function booted(): void
     {
-        static::creating(function (User $user): void {
+        static::creating(function (Auction $auction): void {
 
             $lastPosition = self::max('position');
-            $user->position = $lastPosition ? $lastPosition + 1 : 1;
+            $auction->position = $lastPosition ? $lastPosition + 1 : 1;
         });
     }
 }
