@@ -11,6 +11,9 @@ use MoonShine\Contracts\Core\DependencyInjection\ConfiguratorContract;
 use MoonShine\Contracts\Core\DependencyInjection\CoreContract;
 use MoonShine\Laravel\DependencyInjection\MoonShine;
 use MoonShine\Laravel\DependencyInjection\MoonShineConfigurator;
+use App\MoonShine\Resources\ReviewResource;
+use App\MoonShine\Resources\CourtCaseResource;
+use App\MoonShine\Resources\AuctionResource;
 
 class MoonShineServiceProvider extends ServiceProvider
 {
@@ -26,6 +29,9 @@ class MoonShineServiceProvider extends ServiceProvider
             ->resources([
                 MoonShineUserResource::class,
                 MoonShineUserRoleResource::class,
+                ReviewResource::class,
+                CourtCaseResource::class,
+                AuctionResource::class,
             ])
             ->pages([
                 ...$config->getPages(),
