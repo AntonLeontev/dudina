@@ -41,6 +41,11 @@ class ReviewResource extends ModelResource
 
     public const REVIEW_IMAGES_DIR = 'review';
 
+    protected function search(): array
+    {
+        return ['position'];
+    }
+
     protected function activeActions(): ListOf
     {
         return parent::activeActions()
@@ -109,6 +114,8 @@ class ReviewResource extends ModelResource
      */
     protected function rules(mixed $item): array
     {
-        return [];
+        return [
+            'path' => ['required', 'image', 'max:5120'],
+        ];
     }
 }

@@ -39,6 +39,11 @@ class AuctionResource extends ModelResource
 
     public const AUCTION_IMAGES_DIR = 'auction';
 
+    protected function search(): array
+    {
+        return ['position','title', 'description', 'link'];
+    }
+
     /**
      * @return list<FieldContract>
      */
@@ -82,6 +87,7 @@ class AuctionResource extends ModelResource
                     ->removable()
                     ->onApply(function (Model $model, $value) {
                         return (new MoonshineImageProcessingService())->run($model, $value, SELF::AUCTION_IMAGES_DIR);
+
                     }),
                 Url::make('Ссылка','link'),
             ])
@@ -112,6 +118,11 @@ class AuctionResource extends ModelResource
      */
     protected function rules(mixed $item): array
     {
-        return [];
+        return [
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:50000'],
+            'image' => ['required', 'image', 'max:5120'],
+            'link' => ['required', 'url', 'max:255'],
+        ];
     }
 }

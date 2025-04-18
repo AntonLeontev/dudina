@@ -26,7 +26,12 @@ class MoonshineImageProcessingService
 
         $image->save($finalPath);
 
-        $model->path = $mainDir . '/' . $filename;
+        if($mainDir === 'auction'){
+            $model->image = $mainDir . '/' . $filename;
+        } else {
+            $model->path = $mainDir . '/' . $filename;
+        }
+
 
         return $model;
     }

@@ -41,6 +41,11 @@ class CourtCaseResource extends ModelResource
 
     public const COURT_CASE_IMAGES_DIR = 'court_case';
 
+    protected function search(): array
+    {
+        return ['position'];
+    }
+
     protected function activeActions(): ListOf
     {
         return parent::activeActions()
@@ -109,6 +114,8 @@ class CourtCaseResource extends ModelResource
      */
     protected function rules(mixed $item): array
     {
-        return [];
+        return [
+            'path' => ['required', 'image', 'max:5120'],
+        ];
     }
 }
