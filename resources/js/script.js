@@ -1,5 +1,6 @@
 import Swiper from 'swiper';
 import { Navigation, Pagination, EffectFade } from 'swiper/modules';
+import IMask from 'imask';
 
 import.meta.glob(["../images/**", "../fonts/**"]);
 
@@ -9,7 +10,18 @@ document.addEventListener('DOMContentLoaded', () => {
   headerMenu();
   sliders();
   hideMenu();
+  phoneMask();
 });
+
+function phoneMask() {
+  const phoneInput = document.querySelector('#phone');
+
+  if (!phoneInput) return;
+
+  IMask(phoneInput, {
+	mask: '+{7}(000)000-00-00',
+  });
+}
 
 function unlockScroll() {
   document.body.style.overflow = '';

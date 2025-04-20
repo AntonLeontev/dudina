@@ -273,7 +273,7 @@
                     <form action="#" class="appointment-form" id="form">
 						@csrf
                         <input type="text" class="appointment-form__input" placeholder="Имя" name="name" required>
-                        <input type="tel" class="appointment-form__input" placeholder="+7 (999) 999-99-99" name="phone" required>
+                        <input type="tel" class="appointment-form__input" placeholder="+7 (999) 999-99-99" name="phone" id="phone" value="+7" required>
                         <button class="appointment-form__submit button button--light" type="submit">Записаться</button>
                     </form>
 
