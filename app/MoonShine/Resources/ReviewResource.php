@@ -67,9 +67,10 @@ class ReviewResource extends ModelResource
     {
         return parent::modifyListComponent($component)
             ->fields([
-                Number::make('Позиция', 'position')->sortable(),
+                // Number::make('Позиция', 'position')->sortable(),
                 Image::make('Превью', 'path'),
-                Text::make('Путь к изображению', 'path'),
+                Text::make('Путь к изображению', 'path')
+                    ->link(fn ($item) => url('/storage/'.$item), 'Открыть во вкладке', blank: true),
             ])
             ->reorderable(
                 $this->getAsyncMethodUrl('reorder'),

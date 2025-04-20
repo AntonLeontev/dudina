@@ -17,7 +17,7 @@
 							{{ $auction->title }}
 						</h3>
 
-						<div class="auction__descr">{{ $auction->description }}</div>
+						<div class="auction__descr">{!! str($auction->description)->replace("\n", '<br>') !!}</div>
 
 						@if (!empty($auction->link))
 							<div class="auction__link button">

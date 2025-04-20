@@ -18,6 +18,7 @@ use MoonShine\UI\Fields\ID;
 use MoonShine\UI\Fields\Image;
 use MoonShine\UI\Fields\Number;
 use MoonShine\UI\Fields\Text;
+use MoonShine\UI\Fields\Textarea;
 use MoonShine\UI\Fields\Url;
 
 /**
@@ -61,7 +62,7 @@ class AuctionResource extends ModelResource
     {
         return parent::modifyListComponent($component)
             ->fields([
-                Number::make('Позиция', 'position')->sortable(),
+                // Number::make('Позиция', 'position')->sortable(),
                 Text::make('Заголовок', 'title'),
                 Image::make('Превью', 'image'),
                 Url::make('Ссылка', 'link')->blank(),
@@ -84,16 +85,15 @@ class AuctionResource extends ModelResource
         return [
             Box::make([
                 ID::make(),
-                Text::make('Заголовок', 'title'),
-                Text::make('Описание', 'description'),
+                Text::make('Заголовок', 'title')->escape()->required(),
+                Textarea::make('Описание', 'description')->escape()->required(),
                 Image::make('Изображение', 'image')
                     ->dir(self::AUCTION_IMAGES_DIR)
-                    ->removable()
+                    // ->removable()
                     ->onApply(function (Model $model, $value) {
                         return (new MoonshineImageProcessingService)->run($model, $value, self::AUCTION_IMAGES_DIR);
-
                     }),
-                Url::make('Ссылка', 'link'),
+                Url::make('Ссылка', 'link')->escape()->nullable(),
             ]),
         ];
     }
@@ -124,9 +124,9 @@ class AuctionResource extends ModelResource
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:50000'],
-            'image' => ['required', 'image', 'max:5120'],
-            'link' => ['required', 'url', 'max:255'],
+            'description' => ['required', 'string', 'max:5000'],
+            'image' => ['nullable', 'image', 'max:5120'],
+            'link' => ['nullable', 'url', 'max:255'],
         ];
     }
 }

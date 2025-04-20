@@ -11,6 +11,10 @@ class MoonshineImageProcessingService
 {
     public function run(Model $model, $value, $mainDir): Model
     {
+        if (! $value) {
+            return $model;
+        }
+
         $image = ImageManager::imagick()->read($value->getRealPath());
         $image->encode(new WebpEncoder(quality: 100));
 
