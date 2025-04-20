@@ -15,7 +15,7 @@ class MoonshineImageProcessingService
             return $model;
         }
 
-        $image = ImageManager::imagick()->read($value->getRealPath());
+        $image = ImageManager::gd()->read($value->getRealPath());
         $image->encode(new WebpEncoder(quality: 100));
 
         /** $mainDir = 'review'; / 'court_case' / 'auction' */
