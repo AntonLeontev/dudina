@@ -26,6 +26,7 @@
 	@include mobile-s {
 		max-width: 21rem;
 		height: 36rem;
+		filter: none;
 	}
 
     &::before {
@@ -49,13 +50,13 @@
 
   // .reviews-slider__slide
 
-  &__slide {
-	opacity: 0!important;
-  }
+//   &__slide {
+// 	opacity: 0!important;
+//   }
 
-  .swiper-slide-active {
-	opacity: 1!important;
-  }
+//   .swiper-slide-active {
+// 	opacity: 1!important;
+//   }
 
   // .reviews-slider__img
 

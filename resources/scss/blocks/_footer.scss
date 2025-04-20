@@ -51,6 +51,16 @@
     font-weight: 400;
     font-size: rem(14);
 	text-decoration: underline;
+	text-align: end;
+
+	@include mobile {
+		margin-top: 1rem;
+		text-align: center;
+	}
+
+	li+li {
+		margin-top: 0.5rem;
+	}
   }
 
   // .footer__contact-info
@@ -62,5 +72,17 @@
       justify-self: center;
       margin-top: rem(20);
     }
+  }
+
+}
+.developer {
+  text-align: end;
+  padding: 1.5rem 0;
+  font-size: .875rem;
+  color: var(--color-accent);
+  background: var(--color-primary);
+
+  a {
+	  text-decoration: underline;
   }
 }

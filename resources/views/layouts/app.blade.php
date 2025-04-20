@@ -84,6 +84,11 @@
             </div>
         </div>
     </footer>
+	<div class="developer">
+		<div class="__container">
+			Разработка сайта <a href="https://t.me/anton_leon_web" rel="nofollow" target="_blank">Леонтьев Антон</a>
+		</div>
+	</div>
 </body>
 
 </html>
