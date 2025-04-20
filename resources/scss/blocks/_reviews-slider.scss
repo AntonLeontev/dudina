@@ -23,6 +23,11 @@
       drop-shadow(0 -15px 16px rgba(255, 255, 255, 0.1))
       drop-shadow(0 -5px 23px rgba(167, 140, 133, 0.1));
 
+	@include mobile-s {
+		max-width: 21rem;
+		height: 36rem;
+	}
+
     &::before {
       content: "";
       position: absolute;
