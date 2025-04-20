@@ -1,0 +1,27 @@
+@use "../helpers/func" as *;
+@use "../helpers/media" as *;
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  padding: rem(13) rem(24);
+  border-radius: rem(8);
+  font-weight: 600;
+  background: var(--color-primary);
+  color: var(--color-accent);
+  line-height: normal;
+
+  &--light {
+    background: var(--color-accent);
+    color: var(--color-primary);
+  }
+
+  @include mobile {
+    padding: rem(13) rem(24);
+    width: rem(245);
+    min-height: rem(45);
+  }
+}

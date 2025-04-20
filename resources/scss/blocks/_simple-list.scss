@@ -1,0 +1,19 @@
+@use "../helpers/func" as *;
+@use "../helpers/media" as *;
+
+.simple-list {
+  &__item {
+    display: flex;
+    gap: rem(10);
+
+    &::before {
+      content: '';
+      width: rem(3);
+      height: rem(3);
+      flex-shrink: 0;
+      margin-top: .55em;
+      border-radius: 50%;
+      background: currentColor;
+    }
+  }
+}

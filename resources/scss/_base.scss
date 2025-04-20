@@ -1,0 +1,36 @@
+@use "./helpers/func" as *;
+@use "./helpers/media" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: rem(16);
+  line-height: normal;
+
+  color: var(--color-secondary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button, input {
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+  line-height: normal;
+}
+
+section {
+  padding: fluid(80, 56) 0;
+}

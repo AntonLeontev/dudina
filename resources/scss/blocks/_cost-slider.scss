@@ -1,0 +1,20 @@
+@use "../helpers/func" as *;
+@use "../helpers/media" as *;
+
+.cost-slider {
+  position: relative;
+
+  @include tablet {
+    padding-bottom: rem(20);
+  }
+
+  &__slide {
+    height: auto;
+  }
+
+  &__pagination {
+    @include tablet-above {
+      display: none;
+    }
+  }
+}

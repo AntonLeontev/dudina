@@ -1,0 +1,85 @@
+@use "../helpers/func" as *;
+@use "../helpers/media" as *;
+
+.practice-slider {
+  
+
+  position: relative;
+  padding: 0 fluid(100, 16);
+
+  @include mobile-s {
+    padding-bottom: rem(20);
+  }
+
+  // .practice-slider__content
+
+  &__content {
+  }
+
+  // .practice-slider__swiper
+
+  &__swiper {
+  }
+
+  // .practice-slider__wrapper
+
+  &__wrapper {
+  }
+
+  // .practice-slider__slide
+
+  &__slide {
+    width: rem(280);
+
+    @include mobile {
+      width: rem(250);
+    }
+
+    @include mobile-s {
+      width: 100%;
+    }
+  }
+
+  // .practice-slider__img
+
+  &__img {
+    display: block;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: fluid(10, 6);
+    border: 1px solid var(--color-primary);
+
+    @include mobile {
+      width: 100%;
+    }
+  }
+
+  // .practice-slider__pagination
+
+  &__pagination {
+    @include mobile-s-above {
+      display: none;
+    }
+  }
+
+  // .practice-slider__btn-prev
+
+  &__btn-prev {
+  }
+
+  // .practice-slider__btn-next
+
+  &__btn-next {
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: rem(32);
+    height: rem(32);
+    background-color: var(--color-primary);
+
+    @include mobile-s {
+      display: none;
+    }
+  }
+}

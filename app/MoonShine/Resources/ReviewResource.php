@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
+use App\Models\Review;
 use App\Services\MoonshineImageProcessingService;
 use App\Services\MoonShineReorderService;
-use App\Models\Review;
-
 use Illuminate\Database\Eloquent\Model;
+use MoonShine\Contracts\UI\ComponentContract;
+use MoonShine\Contracts\UI\FieldContract;
 use MoonShine\Laravel\Enums\Action;
 use MoonShine\Laravel\MoonShineRequest;
 use MoonShine\Laravel\Resources\ModelResource;
@@ -17,8 +18,6 @@ use MoonShine\Support\Enums\SortDirection;
 use MoonShine\Support\ListOf;
 use MoonShine\UI\Components\Layout\Box;
 use MoonShine\UI\Fields\ID;
-use MoonShine\Contracts\UI\FieldContract;
-use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\UI\Fields\Image;
 use MoonShine\UI\Fields\Number;
 use MoonShine\UI\Fields\Text;
@@ -31,8 +30,11 @@ class ReviewResource extends ModelResource
     protected string $model = Review::class;
 
     protected string $title = 'Отзывы';
+
     protected string $sortColumn = 'position';
+
     protected bool $usePagination = false;
+
     protected SortDirection $sortDirection = SortDirection::ASC;
 
     protected bool $createInModal = true;
@@ -65,9 +67,9 @@ class ReviewResource extends ModelResource
     {
         return parent::modifyListComponent($component)
             ->fields([
-                Number::make('Позиция','position')->sortable(),
+                Number::make('Позиция', 'position')->sortable(),
                 Image::make('Превью', 'path'),
-                Text::make('Путь к изображению','path'),
+                Text::make('Путь к изображению', 'path'),
             ])
             ->reorderable(
                 $this->getAsyncMethodUrl('reorder'),
@@ -76,7 +78,7 @@ class ReviewResource extends ModelResource
 
     public function reorder(MoonShineRequest $request): void
     {
-        (new MoonShineReorderService())->run($request, $this);
+        (new MoonShineReorderService)->run($request, $this);
     }
 
     /**
@@ -87,13 +89,13 @@ class ReviewResource extends ModelResource
         return [
             Box::make([
                 ID::make(),
-                Image::make('Изображение','path')
-                    ->dir(SELF::REVIEW_IMAGES_DIR)
+                Image::make('Изображение', 'path')
+                    ->dir(self::REVIEW_IMAGES_DIR)
                     ->removable()
                     ->onApply(function (Model $model, $value) {
-                        return (new MoonshineImageProcessingService())->run($model, $value, SELF::REVIEW_IMAGES_DIR);
+                        return (new MoonshineImageProcessingService)->run($model, $value, self::REVIEW_IMAGES_DIR);
                     }),
-            ])
+            ]),
         ];
     }
 
@@ -107,9 +109,9 @@ class ReviewResource extends ModelResource
     }
 
     /**
-     * @param Review $item
-     *
+     * @param  Review  $item
      * @return array<string, string[]|string>
+     *
      * @see https://laravel.com/docs/validation#available-validation-rules
      */
     protected function rules(mixed $item): array

@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Layouts;
 
-use App\Models\Auction;
+use App\MoonShine\Resources\AuctionResource;
+use App\MoonShine\Resources\CourtCaseResource;
+use App\MoonShine\Resources\ReviewResource;
 use MoonShine\ColorManager\ColorManager;
 use MoonShine\Contracts\ColorManager\ColorManagerContract;
 use MoonShine\Laravel\Components\Fragment;
 use MoonShine\Laravel\Layouts\AppLayout;
+use MoonShine\MenuManager\MenuItem;
 use MoonShine\UI\Components\Layout\Body;
 use MoonShine\UI\Components\Layout\Content;
 use MoonShine\UI\Components\Layout\Div;
@@ -16,10 +19,6 @@ use MoonShine\UI\Components\Layout\Flash;
 use MoonShine\UI\Components\Layout\Html;
 use MoonShine\UI\Components\Layout\Layout;
 use MoonShine\UI\Components\Layout\Wrapper;
-use App\MoonShine\Resources\ReviewResource;
-use MoonShine\MenuManager\MenuItem;
-use App\MoonShine\Resources\CourtCaseResource;
-use App\MoonShine\Resources\AuctionResource;
 
 final class MoonShineLayout extends AppLayout
 {
@@ -68,7 +67,7 @@ final class MoonShineLayout extends AppLayout
 
                                 Content::make($this->getContentComponents()),
 
-//                                $this->getFooterComponent(),
+                                //                                $this->getFooterComponent(),
                             ])->class('layout-page')->name(self::CONTENT_FRAGMENT_NAME),
                         ])->class('flex grow overflow-auto')->customAttributes(['id' => self::CONTENT_ID]),
                     ]),

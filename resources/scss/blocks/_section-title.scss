@@ -1,0 +1,21 @@
+@use "../helpers/func" as *;
+@use "../helpers/media" as *;
+
+.section-title {
+  font-weight: 600;
+  font-size: fluid(40, 24);
+  line-height: 1.3;
+  color: var(--color-primary);
+
+  &--g-lg {
+    margin-bottom: fluid(40, 30);
+  }
+
+  &--g-sm {
+    margin-bottom: fluid(20, 5);
+
+    @include mobile {
+      margin-bottom: rem(30);
+    }
+  }
+}

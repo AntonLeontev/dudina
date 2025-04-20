@@ -1,0 +1,48 @@
+@use "../helpers/func" as *;
+@use "../helpers/media" as *;
+
+.after-slider {
+  position: relative;
+
+  // .after-slider__content
+
+  &__content {
+    overflow: hidden;
+    max-width: rem(270);
+    margin: 0 auto;
+    border: 1px solid var(--color-primary);
+    border-radius: fluid(16, 6);
+  }
+
+  // .after-slider__swiper
+
+  &__swiper {
+  }
+
+  // .after-slider__wrapper
+
+  &__wrapper {
+  }
+
+  // .after-slider__slide
+
+  &__slide {
+  }
+
+  // .after-slider__img
+
+  &__img {
+    display: block;
+    max-width: 100%;
+  }
+
+  // .after-slider__btn-prev
+
+  &__btn-prev {
+  }
+
+  // .after-slider__btn-next
+
+  &__btn-next {
+  }
+}

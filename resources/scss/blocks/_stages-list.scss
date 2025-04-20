@@ -1,0 +1,50 @@
+@use "../helpers/func" as *;
+@use "../helpers/media" as *;
+
+.stages-list {
+  margin-bottom: fluid(25, 20);
+  max-width: rem(927);
+
+  // .stages-list__item
+
+  &__item {
+    align-items: flex-start;
+    font-weight: 200;
+    font-size: fluid(20, 16);
+    line-height: 1.3;
+    color: var(--color-accent);
+
+    &::before {
+      width: fluid(40, 30);
+      height: fluid(40, 30);
+    }
+  }
+
+  &__item + &__item {
+    margin-top: fluid(25, 15);
+  }
+
+  // .stages-list__content
+
+  &__content {
+  }
+
+  // .stages-list__caption
+
+  &__caption {
+    margin-bottom: rem(4);
+    font-weight: 400;
+    font-size: fluid(16, 15);
+    line-height: 1.3;
+    color: var(--color-primary);
+  }
+
+  // .stages-list__value
+
+  &__value {
+    font-weight: 300;
+    font-size: fluid(16, 15);
+    line-height: 1.3;
+    color: var(--color-secondary);
+  }
+}

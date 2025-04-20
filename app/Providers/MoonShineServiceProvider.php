@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\MoonShine\Resources\AuctionResource;
+use App\MoonShine\Resources\CourtCaseResource;
 use App\MoonShine\Resources\MoonShineUserResource;
 use App\MoonShine\Resources\MoonShineUserRoleResource;
+use App\MoonShine\Resources\ReviewResource;
 use Illuminate\Support\ServiceProvider;
 use MoonShine\Contracts\Core\DependencyInjection\ConfiguratorContract;
 use MoonShine\Contracts\Core\DependencyInjection\CoreContract;
 use MoonShine\Laravel\DependencyInjection\MoonShine;
 use MoonShine\Laravel\DependencyInjection\MoonShineConfigurator;
-use App\MoonShine\Resources\ReviewResource;
-use App\MoonShine\Resources\CourtCaseResource;
-use App\MoonShine\Resources\AuctionResource;
 
 class MoonShineServiceProvider extends ServiceProvider
 {

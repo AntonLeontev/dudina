@@ -1,0 +1,37 @@
+@use "../helpers/func" as *;
+@use "../helpers/media" as *;
+
+.bankruptcy-video {
+
+  // .bankruptcy-video__container
+
+  &__container {
+  }
+
+  // .bankruptcy-video__inner
+
+  &__inner {
+  }
+
+  // .bankruptcy-video__title
+
+  &__title {
+    text-align: center;
+    max-width: rem(876);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  // .bankruptcy-video__content
+
+  &__content {
+    display: block;
+    max-width: rem(970);
+    width: 100%;
+    height: auto;
+    min-height: rem(220);
+    aspect-ratio: 1.979 / 1;
+    margin: 0 auto;
+    border-radius: fluid(20, 10);
+  }
+}

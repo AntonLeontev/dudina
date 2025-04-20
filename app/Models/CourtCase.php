@@ -8,11 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class CourtCase extends Model
 {
     use HasFactory;
-    protected $fillable = [
 
+    protected $fillable = [
         'position',
         'path',
     ];
+
+    protected $appends = [
+        'image',
+    ];
+
+    public function getImageAttribute(): string
+    {
+        return url('storage/'.$this->path);
+    }
+
     protected static function booted(): void
     {
         static::creating(function (CourtCase $courtCase): void {

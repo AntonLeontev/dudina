@@ -1,0 +1,21 @@
+@use "../helpers/func" as *;
+@use "../helpers/media" as *;
+
+.coverage-info {
+  display: flex;
+  align-items: center;
+  gap: rem(10);
+  
+  // .coverage-info__icon
+
+  &__icon {
+  }
+
+  // .coverage-info__text
+
+  &__text {
+    font-weight: 300;
+    font-size: rem(14);
+    color: var(--color-gray);
+  }
+}

@@ -1,0 +1,8 @@
+@use "../helpers/func" as *;
+@use "../helpers/media" as *;
+
+[class*="__container"] {
+  max-width: 1170px + 32px;
+  padding: 0 rem(16);
+  margin: 0 auto;
+}

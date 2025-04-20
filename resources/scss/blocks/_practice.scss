@@ -1,0 +1,23 @@
+// @use "../helpers/func" as *;
+// @use "../helpers/media" as *;
+
+.practice {
+  background: #cfd3d5;
+
+  // .practice__container
+
+  &__container {
+  }
+
+  // .practice__inner
+
+  &__inner {
+  }
+
+  // .practice__title
+
+  &__title {
+    color: var(--color-primary);
+    text-align: center;
+  }
+}

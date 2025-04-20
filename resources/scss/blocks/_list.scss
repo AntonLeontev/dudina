@@ -1,0 +1,49 @@
+@use "../helpers/func" as *;
+@use "../helpers/media" as *;
+
+.list {
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+
+    &::before {
+      content: "";
+      width: rem(24);
+      height: rem(24);
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      line-height: 0;
+
+      background: var(--color-gray);
+      border-radius: 50%;
+    }
+  }
+
+  &--check &__item {
+    
+    &::before {
+      content: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="12" fill="%237B8084" /><path d="M17.1704 8.83073L9.80368 16.1975C9.73893 16.2621 9.65117 16.2985 9.55966 16.2985C9.46815 16.2985 9.38038 16.2621 9.31563 16.1975L6.09268 12.9745C6.03168 12.9091 5.99848 12.8225 6.00005 12.733C6.00163 12.6436 6.03787 12.5582 6.10114 12.4949C6.16441 12.4317 6.24976 12.3954 6.33922 12.3939C6.42869 12.3923 6.51527 12.4255 6.58073 12.4865L9.55966 15.4648L16.6824 8.34268C16.7478 8.28168 16.8344 8.24848 16.9239 8.25005C17.0133 8.25163 17.0987 8.28787 17.162 8.35114C17.2252 8.41441 17.2615 8.49976 17.2631 8.58923C17.2646 8.67869 17.2314 8.76527 17.1704 8.83073Z" fill="white" /></svg>');
+      background: none;
+      
+      @include mobile-md {
+        content: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" rx="10" fill="%237B8084" /><path d="M15.1704 6.83073L7.80368 14.1975C7.73893 14.2621 7.65117 14.2985 7.55966 14.2985C7.46815 14.2985 7.38038 14.2621 7.31563 14.1975L4.09268 10.9745C4.03168 10.9091 3.99848 10.8225 4.00005 10.733C4.00163 10.6436 4.03787 10.5582 4.10114 10.4949C4.16441 10.4317 4.24976 10.3954 4.33922 10.3939C4.42869 10.3923 4.51527 10.4255 4.58073 10.4865L7.55966 13.4648L14.6824 6.34268C14.7478 6.28168 14.8344 6.24848 14.9239 6.25005C15.0133 6.25163 15.0987 6.28787 15.162 6.35114C15.2252 6.41441 15.2615 6.49976 15.2631 6.58923C15.2646 6.67869 15.2314 6.76527 15.1704 6.83073Z" fill="white" /></svg>');
+        
+        width: rem(20);
+        height: rem(20);
+      }
+    }
+  }
+
+  &--number {
+    counter-reset: itemCounter;
+  }
+
+  &--number &__item::before {
+    counter-increment: itemCounter;
+    content: counter(itemCounter);
+  }
+}

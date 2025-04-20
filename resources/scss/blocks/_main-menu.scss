@@ -1,0 +1,49 @@
+@use "../helpers/func" as *;
+@use "../helpers/media" as *;
+
+.main-menu {
+  // .main-menu__list
+
+  @include mobile {
+    align-self: flex-start;
+    text-align: left;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: rem(10) rem(44);
+
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  // .main-menu__item
+
+  &__item {
+  }
+  
+  // .main-menu__item--active
+  
+  &__item--active &__link {
+    border-color: 1px solid var(--color-gray);
+    color: var(--color-gray);
+  }
+  
+  // .main-menu__link
+  
+  &__link {
+    display: block;
+    border-bottom: 1px solid transparent;
+    font-size: rem(14);
+    color: var(--color-secondary);
+    transition: color 0.3s ease, border-color 0.3s ease;
+
+    @include hover {
+      border-color: 1px solid var(--color-gray);
+      color: var(--color-gray);
+    }
+  }
+}

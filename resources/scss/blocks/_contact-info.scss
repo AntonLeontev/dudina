@@ -1,0 +1,75 @@
+@use "../helpers/func" as *;
+@use "../helpers/media" as *;
+
+.contact-info {
+  display: flex;
+  align-items: center;
+
+  @include tablet {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas:
+      "phone social"
+      "button button";
+    row-gap: rem(20);
+  }
+
+  // .contact-info__phone
+
+  &__phone {
+    display: block;
+    margin-right: rem(16);
+
+    font-weight: 500;
+    font-size: rem(14);
+    color: var(--color-secondary);
+
+    @include tablet {
+      grid-area: phone;
+    }
+  }
+
+  // .contact-info__social-list
+
+  &__social-list {
+    margin-right: rem(25);
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+
+    @include tablet {
+      grid-area: social;
+    }
+  }
+
+  // .contact-info__social-item
+
+  &__social-item {
+  }
+
+  // .contact-info__social-link
+
+  &__social-link {
+    display: block;
+  }
+
+  // .contact-info__social-icon
+
+  &__social-icon {
+    display: block;
+    fill: var(--color-gray);
+  }
+
+  // .contact-info__button
+
+  &__button {
+    @include tablet {
+      grid-area: button;
+    }
+  }
+
+  &--light &__phone, &--light &__social-icon {
+    color: var(--color-accent);
+    fill: var(--color-accent);
+  }
+}

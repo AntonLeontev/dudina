@@ -1,0 +1,66 @@
+@use "../helpers/func" as *;
+@use "../helpers/media" as *;
+
+.footer {
+  padding: rem(50) 0;
+
+  color: var(--color-accent);
+  background: var(--color-primary);
+
+  // .footer__container
+
+  &__container {
+  }
+
+  // .footer__inner
+
+  &__inner {
+    display: grid;
+    grid-template-areas: "person contact" "about links";
+    gap: fluid(20, 10);
+    justify-content: space-between;
+
+    @include mobile {
+      grid-template-areas:
+        "person"
+        "about"
+        "contact"
+		"links";
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // .footer__person-card
+
+  &__person-card {
+    grid-area: person;
+    align-self: flex-start;
+  }
+
+  // .footer__about
+
+  &__about {
+    grid-area: about;
+    font-weight: 300;
+    font-size: rem(12);
+  }
+
+  // .footer__links
+  &__links {
+    grid-area: links;
+    font-weight: 400;
+    font-size: rem(14);
+	text-decoration: underline;
+  }
+
+  // .footer__contact-info
+
+  &__contact-info {
+    grid-area: contact;
+
+    @include mobile {
+      justify-self: center;
+      margin-top: rem(20);
+    }
+  }
+}

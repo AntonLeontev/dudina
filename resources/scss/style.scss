@@ -1,0 +1,46 @@
+// @use "../helpers/func" as *;
+// @use "../helpers/media" as *;
+
+@use "fonts";
+@use "design-system";
+@use "reset";
+
+@use "base";
+
+@use "slider/swiper-base.min.css";
+@use "slider/navigation.min.css";
+@use "slider/pagination.min.css";
+@use "slider/effect-fade.min.css";
+
+@use "blocks/auctions";
+@use "blocks/container";
+@use "blocks/person-card";
+@use "blocks/coverage-info";
+@use "blocks/header";
+@use "blocks/main-menu";
+@use "blocks/button";
+@use "blocks/contact-info";
+@use "blocks/hero";
+@use "blocks/list";
+@use "blocks/bankruptcy-cta";
+@use "blocks/section-title";
+@use "blocks/main";
+@use "blocks/consequences";
+@use "blocks/about";
+@use "blocks/stat-item";
+@use "blocks/appointment";
+@use "blocks/appointment-form";
+@use "blocks/swiper";
+@use "blocks/reviews";
+@use "blocks/reviews-slider";
+@use "blocks/practice";
+@use "blocks/practice-slider";
+@use "blocks/stages";
+@use "blocks/stages-list";
+@use "blocks/after";
+@use "blocks/simple-list";
+@use "blocks/after-slider";
+@use "blocks/cost-card";
+@use "blocks/cost-slider";
+@use "blocks/bankruptcy-video";
+@use "blocks/footer";

@@ -8,14 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Auction extends Model
 {
     use HasFactory;
-    protected $fillable = [
 
+    protected $fillable = [
         'position',
         'title',
         'description',
         'image',
         'link',
     ];
+
     protected static function booted(): void
     {
         static::creating(function (Auction $auction): void {

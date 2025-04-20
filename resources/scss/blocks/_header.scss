@@ -1,0 +1,170 @@
+@use "../helpers/func" as *;
+@use "../helpers/media" as *;
+
+.header {
+  // .header__container
+
+  &__container {
+  }
+
+  // .header__inner
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: rem(7);
+
+    @include tablet {
+      padding: rem(16) 0;
+    }
+  }
+
+  // .header__person-card
+
+  &__person-card {
+    
+    @include tablet-above {
+      padding: rem(20) 0;
+    }
+
+    .person-card {
+      &__image {
+        @include mobile {
+          width: rem(40);
+          height: rem(40);
+        }
+      }
+
+      &__name {
+        font-size: fluid(14, 13);
+      }
+
+      &__position {
+        font-size: fluid(12, 11);
+      }
+
+     
+    }
+  }
+
+  // .header__box
+
+  &__box {
+    display: flex;
+    gap: rem(25);
+
+    
+    @include tablet {
+      position: fixed;
+      top: rem(80);
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: rem(30) rem(16) 0;
+      
+      flex-direction: column;
+      align-items: center;
+      gap: rem(20);
+
+      background: var(--color-accent);
+
+      transform: translateX(100%);
+
+      transition: transform .3s ease;
+    }
+
+    @include mobile {
+      top: rem(56);
+    }
+  }
+
+  &--open &__box {
+    transform: translateX(0);
+  }
+
+  // .header__coverage-info
+
+  &__coverage-info {
+    @include tablet {
+      order: 1;
+    }
+  }
+
+  // .header__contact-info
+
+  &__contact-info {
+    .contact-info {
+      &__phone {
+        position: relative;
+        margin-right: 0;
+        padding-right: rem(20);
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          right: rem(9);
+          height: rem(20);
+          width: rem(1);
+          background: var(--color-gray);
+        }
+      }
+
+      &__button {
+        font-size: rem(14);
+        padding: rem(14) rem(24);
+      }
+    }
+  }
+
+  // .header__main-menu
+
+  &__main-menu {
+    @include tablet {
+      display: none;
+    }
+    @include tablet-above {
+      margin-left: auto;
+    }
+  }
+
+  // .header__main-menu--mobile
+
+  &__main-menu--mobile {
+    display: block;
+    
+    @include tablet-above {
+      display: none;
+    }
+  }
+
+  // .header__menu-btn 
+
+  &__menu-btn {
+    width: rem(24);
+    height: rem(24);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0;
+
+    @include tablet-above {
+      display: none;
+    }
+
+    &-cross {
+      display: none;
+    }
+  }
+
+  &--open &__menu-btn-cross {
+    display: block;
+  }
+
+  &--open &__menu-btn-lines {
+    display: none;
+  }
+}

@@ -15,23 +15,22 @@ class MoonshineImageProcessingService
         $image->encode(new WebpEncoder(quality: 100));
 
         /** $mainDir = 'review'; / 'court_case' / 'auction' */
-        $filesPictureDir = storage_path('app/public/' . $mainDir);
-        $filename = Str::uuid() . '.' . 'webp';
+        $filesPictureDir = storage_path('app/public/'.$mainDir);
+        $filename = Str::uuid().'.'.'webp';
 
-        $finalPath = $filesPictureDir . '/' . $filename;
+        $finalPath = $filesPictureDir.'/'.$filename;
 
-        if(!file_exists($filesPictureDir)){
+        if (! file_exists($filesPictureDir)) {
             mkdir($filesPictureDir, 0755, true);
         }
 
         $image->save($finalPath);
 
-        if($mainDir === 'auction'){
-            $model->image = $mainDir . '/' . $filename;
+        if ($mainDir === 'auction') {
+            $model->image = $mainDir.'/'.$filename;
         } else {
-            $model->path = $mainDir . '/' . $filename;
+            $model->path = $mainDir.'/'.$filename;
         }
-
 
         return $model;
     }

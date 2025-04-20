@@ -1,0 +1,51 @@
+@use '../helpers/func' as *;
+@use '../helpers/media' as *;
+
+.person-card {
+  display: flex;
+  align-items: center;
+  column-gap: rem(10);
+
+  // .person-card__image
+
+  &__image {
+    flex-shrink: 0;
+    width: rem(60);
+    height: rem(60);
+    font-size: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+
+  // .person-card__info
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(4);
+  }
+
+  // .person-card__name
+
+  &__name {
+    font-size: rem(14);
+    color: var(--color-secondary);
+  }
+
+  // .person-card__position
+
+  &__position {
+    font-size: rem(12);
+    font-weight: 300;
+    color: var(--color-gray);
+  }
+
+  &--light &__name, &--light &__position {
+    color: var(--color-accent)
+  }
+}
