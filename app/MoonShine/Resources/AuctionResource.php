@@ -85,15 +85,15 @@ class AuctionResource extends ModelResource
         return [
             Box::make([
                 ID::make(),
-                Text::make('Заголовок', 'title')->escape()->required(),
-                Textarea::make('Описание', 'description')->escape()->required(),
+                Text::make('Заголовок', 'title')->unescape()->required(),
+                Textarea::make('Описание', 'description')->unescape()->required(),
                 Image::make('Изображение', 'image')
                     ->dir(self::AUCTION_IMAGES_DIR)
                     // ->removable()
                     ->onApply(function (Model $model, $value) {
                         return (new MoonshineImageProcessingService)->run($model, $value, self::AUCTION_IMAGES_DIR);
                     }),
-                Url::make('Ссылка', 'link')->escape()->nullable(),
+                Text::make('Ссылка', 'link')->unescape()->nullable(),
             ]),
         ];
     }

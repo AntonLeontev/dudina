@@ -20,6 +20,7 @@ use MoonShine\UI\Components\Layout\Box;
 use MoonShine\UI\Fields\ID;
 use MoonShine\UI\Fields\Image;
 use MoonShine\UI\Fields\Number;
+use MoonShine\UI\Fields\Position;
 use MoonShine\UI\Fields\Text;
 
 /**
@@ -67,6 +68,7 @@ class CourtCaseResource extends ModelResource
     {
         return parent::modifyListComponent($component)
             ->fields([
+                Position::make('Позиция', 'position'),
                 // Number::make('Позиция', 'position')->sortable(),
                 Image::make('Превью', 'path'),
                 Text::make('Путь к изображению', 'path')
