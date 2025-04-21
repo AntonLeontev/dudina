@@ -54,8 +54,7 @@
             <div class="bankruptcy-cta__inner">
                 <p class="bankruptcy-cta__text">
                     Банкротство — это законная процедура списания долгов через суд. Вам не придется ходить в суд и
-                    участвовать в
-                    заседаниях. Все хлопоты мы возьмем на себя.
+                    участвовать в заседаниях. Все хлопоты мы возьмем на себя.
                 </p>
 
                 <button href="#" class="bankruptcy-cta__anchor" data-target="section-video">
@@ -332,8 +331,8 @@
 								<div class="reviews-slider__wrapper swiper-wrapper">
 									@foreach ($reviews as $review)
 										<div class="reviews-slider__slide swiper-slide">
-											<img src="{{ $review->image }}" alt="review-{{ $review->id }}" class="reviews-slider__img" loading="lazy">
-											<div class="swiper-lazy-preloader"></div>
+											<img src="{{ $review->image }}" alt="review-{{ $review->id }}" class="reviews-slider__img">
+											{{-- <div class="swiper-lazy-preloader"></div> --}}
 										</div>
 									@endforeach
 								</div>
@@ -758,10 +757,6 @@
                     Подробный разговор о мифах и подводных камнях банкротства
                 </h2>
 
-                {{-- <iframe class="bankruptcy-video__content"
-                    src="https://vk.com/video_ext.php?oid=716842214&id=456239334&hd=2" width="853"
-                    height="480" allow="encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
-                    frameborder="0" allowfullscreen></iframe> --}}
 				<iframe class="bankruptcy-video__content" src="https://vkvideo.ru/video_ext.php?oid=716842214&id=456239334&hd=2" width="853" height="480" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
