@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Списание долгов')
+
 @section('content')
     <section class="hero">
         <div class="hero__container">
@@ -277,7 +279,7 @@
                     </form>
 
                     <p class="appointment__disclaimer">
-                        Отправляя форму вы соглашаетесь с условиями <a href="/policy.pdf">политики обработки персональных данных</a> 
+                        Отправляя форму вы соглашаетесь с условиями <a href="/policy.pdf">политики обработки персональных данных</a> и даете <a href="/agreement.pdf">согласие на обработку персональных данных</a> 
                     </p>
                 </div>
 

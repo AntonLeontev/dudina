@@ -4,7 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Арбитражный управляющий Дудина Евгения</title>
+    <title>@yield('title') | Арбитражный управляющий Дудина Евгения</title>
+	<meta name="description" content="Избавление от долгов под ключ через процедуру банкротства">
+
+	<meta property="og:title" content="@yield('title') | Арбитражный управляющий Дудина Евгения">
+	<meta property="og:description" content="Избавление от долгов под ключ через процедуру банкротства">
+	<meta property="og:image" content="{{ Vite::asset('resources/images/pixels/hero.webp') }}">
+
     @vite(['resources/scss/style.scss', 'resources/js/script.js'])
 	<link rel="icon" href="/favicon.png" sizes="32x32" />
 </head>

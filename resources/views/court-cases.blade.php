@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Дела в управлении')
+
 @section('content')
 <section class="hero">
 	<div class="hero__container">
