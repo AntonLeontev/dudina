@@ -11,5 +11,5 @@ Route::controller(PagesController::class)->group(function () {
 });
 
 Route::post('/application', function (Request $request, TelegramApplicationService $service) {
-    $service->sendApplication($request->phone, $request->name);
+    $response = $service->sendApplication($request->phone, $request->name);
 });
