@@ -171,7 +171,7 @@
                                 fill="white" />
                         </svg>
 
-                        <a href="https://wa.me/+79031601609" class="about__social-link">
+                        <a href="https://wa.me/+79031601609" class="about__social-link" aria-label="Написать в Whatsapp">
                             <svg class="about__social-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -180,7 +180,7 @@
                             </svg>
                         </a>
 
-                        <a href="https://t.me/EV_Dudina" class="about__social-link">
+                        <a href="https://t.me/EV_Dudina" class="about__social-link" aria-label="Написать в телеграм">
                             <svg class="about__social-icon" width="12" height="12" viewBox="0 0 12 12"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -759,7 +759,7 @@
                     Подробный разговор о мифах и подводных камнях банкротства
                 </h2>
 
-				<iframe class="bankruptcy-video__content" data-src="https://vkvideo.ru/video_ext.php?oid=716842214&id=456239334&hd=2" width="853" height="480" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+				<iframe class="bankruptcy-video__content" data-src="https://vkvideo.ru/video_ext.php?oid=716842214&id=456239334&hd=2" width="853" height="480" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen title="Разговор о мифах и подводных камнях банкротства"></iframe>
             </div>
         </div>
     </section>

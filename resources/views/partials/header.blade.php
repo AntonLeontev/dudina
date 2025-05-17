@@ -60,7 +60,7 @@
 
                     <ul class="contact-info__social-list">
                         <li class="contact-info__social-item">
-                            <a href="https://wa.me/+79031601609" class="contact-info__social-link">
+                            <a href="https://wa.me/+79031601609" class="contact-info__social-link" aria-label="Написать в Whatsapp">
                                 <svg class="contact-info__social-icon" width="32" height="33" viewBox="0 0 32 33"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -72,7 +72,7 @@
                         </li>
 
                         <li class="contact-info__social-item">
-                            <a href="https://t.me/EV_Dudina" class="contact-info__social-link">
+                            <a href="https://t.me/EV_Dudina" class="contact-info__social-link" aria-label="Написать в телеграм">
                                 <svg class="contact-info__social-icon" width="32" height="33" viewBox="0 0 32 33"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -125,7 +125,7 @@
                 </ul>
             </nav>
 
-            <button class="header__menu-btn">
+            <button class="header__menu-btn" aria-label="Меню">
                 <svg class="header__menu-btn-lines" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
