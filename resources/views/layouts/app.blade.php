@@ -11,7 +11,7 @@
 	<meta property="og:description" content="Избавление от долгов под ключ через процедуру банкротства">
 	<meta property="og:image" content="{{ Vite::asset('resources/images/pixels/hero.webp') }}">
 
-    @vite(['resources/scss/style.scss', 'resources/js/script.js'])
+    @vite(['resources/scss/style.scss', 'resources/js/script.js', 'resources/js/scroll.js'])
 	<link rel="icon" href="/favicon.png" sizes="32x32" />
 </head>
 

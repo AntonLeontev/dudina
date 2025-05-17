@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="hero__image">
-                    <img src="{{ Vite::asset('resources/images/pixels/hero.webp') }}" alt="hero">
+                    <img src="{{ Vite::asset('resources/images/pixels/hero.webp') }}" alt="hero" fetchpriority="high">
                 </div>
             </div>
         </div>
@@ -84,7 +84,7 @@
 
                 <div class="consequences__grid">
                     <div class="consequences__item">
-                        <img src="{{ Vite::asset('resources/images/vector/consequences/01.svg') }}" alt="" class="consequences__item-icon">
+                        <img src="{{ Vite::asset('resources/images/vector/consequences/01.svg') }}" alt="" class="consequences__item-icon" loading="lazy">
 
                         <p class="consequences__item-caption">
                             Приставы перестанут списывать деньги и блокировать счета
@@ -92,7 +92,7 @@
                     </div>
 
                     <div class="consequences__item">
-                        <img src="{{ Vite::asset('resources/images/vector/consequences/02.svg') }}" alt="" class="consequences__item-icon">
+                        <img src="{{ Vite::asset('resources/images/vector/consequences/02.svg') }}" alt="" class="consequences__item-icon" loading="lazy">
 
                         <p class="consequences__item-caption">
                             Перестанут доставать коллекторы
@@ -100,7 +100,7 @@
                     </div>
 
                     <div class="consequences__item">
-                        <img src="{{ Vite::asset('resources/images/vector/consequences/03.svg') }}" alt="" class="consequences__item-icon">
+                        <img src="{{ Vite::asset('resources/images/vector/consequences/03.svg') }}" alt="" class="consequences__item-icon" loading="lazy">
 
                         <p class="consequences__item-caption">
                             Запрет на выезд за границу будет снят
@@ -108,7 +108,7 @@
                     </div>
 
                     <div class="consequences__item">
-                        <img src="{{ Vite::asset('resources/images/vector/consequences/04.svg') }}" alt="" class="consequences__item-icon">
+                        <img src="{{ Vite::asset('resources/images/vector/consequences/04.svg') }}" alt="" class="consequences__item-icon" loading="lazy">
 
                         <p class="consequences__item-caption">
                             Больше не придется искать как еще заработать.
@@ -116,7 +116,7 @@
                     </div>
 
                     <div class="consequences__item">
-                        <img src="{{ Vite::asset('resources/images/vector/consequences/05.svg') }}" alt="" class="consequences__item-icon">
+                        <img src="{{ Vite::asset('resources/images/vector/consequences/05.svg') }}" alt="" class="consequences__item-icon" loading="lazy">
 
                         <p class="consequences__item-caption">
                             Начнете откладывать, а не тратить
@@ -124,7 +124,7 @@
                     </div>
 
                     <div class="consequences__item">
-                        <img src="{{ Vite::asset('resources/images/vector/consequences/06.svg') }}" alt="" class="consequences__item-icon">
+                        <img src="{{ Vite::asset('resources/images/vector/consequences/06.svg') }}" alt="" class="consequences__item-icon" loading="lazy">
 
                         <p class="consequences__item-caption">
                             Наконец-то начнете спать по ночам
@@ -132,7 +132,7 @@
                     </div>
 
                     <div class="consequences__item">
-                        <img src="{{ Vite::asset('resources/images/vector/consequences/07.svg') }}" alt="" class="consequences__item-icon">
+                        <img src="{{ Vite::asset('resources/images/vector/consequences/07.svg') }}" alt="" class="consequences__item-icon" loading="lazy">
 
                         <p class="consequences__item-caption">
                             Почувствуете свободу, расслабленность и уверенность в завтрашнем дне
@@ -161,7 +161,7 @@
                 </h2>
 
                 <div class="about__image">
-                    <img src="{{ Vite::asset('resources/images/pixels/about/01.webp') }}" alt="about">
+                    <img src="{{ Vite::asset('resources/images/pixels/about/01.webp') }}" alt="about" loading="lazy">
 
                     <div class="about__social">
                         <svg class="about__social-arrow" width="61" height="8" viewBox="0 0 61 8" fill="none"
@@ -171,7 +171,7 @@
                                 fill="white" />
                         </svg>
 
-                        <a href="#" class="about__social-link">
+                        <a href="https://wa.me/+79031601609" class="about__social-link">
                             <svg class="about__social-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -180,7 +180,7 @@
                             </svg>
                         </a>
 
-                        <a href="#" class="about__social-link">
+                        <a href="https://t.me/EV_Dudina" class="about__social-link">
                             <svg class="about__social-icon" width="12" height="12" viewBox="0 0 12 12"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -333,7 +333,7 @@
 								<div class="reviews-slider__wrapper swiper-wrapper">
 									@foreach ($reviews as $review)
 										<div class="reviews-slider__slide swiper-slide">
-											<img src="{{ $review->image }}" alt="review-{{ $review->id }}" class="reviews-slider__img">
+											<img src="{{ $review->image }}" alt="review-{{ $review->id }}" class="reviews-slider__img" loading="lazy">
 											{{-- <div class="swiper-lazy-preloader"></div> --}}
 										</div>
 									@endforeach
@@ -364,7 +364,7 @@
 								<div class="practice-slider__wrapper swiper-wrapper">
 									@foreach ($cases as $case)
 										<div class="practice-slider__slide swiper-slide">
-											<img src="{{ $case->image }}" alt="" class="practice-slider__img">
+											<img src="{{ $case->image }}" alt="" class="practice-slider__img" loading="lazy">
 										</div>
 									@endforeach
 								</div>
@@ -534,17 +534,17 @@
                             <div class="after-slider__swiper swiper">
                                 <div class="after-slider__wrapper swiper-wrapper">
                                     <div class="after-slider__slide swiper-slide">
-                                        <img src="{{ Vite::asset('resources/images/pixels/after/01.webp') }}" alt="" class="after-slider__img">
+                                        <img src="{{ Vite::asset('resources/images/pixels/after/01.webp') }}" alt="" class="after-slider__img" loading="lazy">
                                     </div>
 
                                     <div class="after-slider__slide swiper-slide">
-                                        <img src="{{ Vite::asset('resources/images/pixels/after/02.webp') }}" alt="" class="after-slider__img">
+                                        <img src="{{ Vite::asset('resources/images/pixels/after/02.webp') }}" alt="" class="after-slider__img" loading="lazy">
                                     </div>
                                     <div class="after-slider__slide swiper-slide">
-                                        <img src="{{ Vite::asset('resources/images/pixels/after/03.webp') }}" alt="" class="after-slider__img">
+                                        <img src="{{ Vite::asset('resources/images/pixels/after/03.webp') }}" alt="" class="after-slider__img" loading="lazy">
                                     </div>
                                     <div class="after-slider__slide swiper-slide">
-                                        <img src="{{ Vite::asset('resources/images/pixels/after/04.webp') }}" alt="" class="after-slider__img">
+                                        <img src="{{ Vite::asset('resources/images/pixels/after/04.webp') }}" alt="" class="after-slider__img" loading="lazy">
                                     </div>
                                 </div>
                             </div>
@@ -759,7 +759,7 @@
                     Подробный разговор о мифах и подводных камнях банкротства
                 </h2>
 
-				<iframe class="bankruptcy-video__content" src="https://vkvideo.ru/video_ext.php?oid=716842214&id=456239334&hd=2" width="853" height="480" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+				<iframe class="bankruptcy-video__content" data-src="https://vkvideo.ru/video_ext.php?oid=716842214&id=456239334&hd=2" width="853" height="480" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </section>
