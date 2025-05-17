@@ -1,1 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,regular,500,600&display=swap);
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto/Roboto-VariableFont_wdth\,wght.woff2') format('woff2-variations');
+    src: url('../fonts/Roboto/Roboto-VariableFont_wdth\,wght.woff2') format('woff2') tech('variations');
+    font-weight: 100 900;
+    font-stretch: 75% 100%;
+}
