@@ -1,5 +1,6 @@
 <?php
 
+use Logger\TelegramLogger;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
@@ -56,6 +57,12 @@ return [
             'driver' => 'stack',
             'channels' => explode(',', env('LOG_STACK', 'single')),
             'ignore_exceptions' => false,
+        ],
+
+        'telegram' => [
+            'driver' => 'custom',
+            'via' => TelegramLogger::class,
+            'level' => 'debug',
         ],
 
         'single' => [
