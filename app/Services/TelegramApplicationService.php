@@ -10,10 +10,17 @@ class TelegramApplicationService
     {
         $text = "Новая заявка c сайта:\n".$name."\n".$phone;
 
-        return Http::throw()
-            ->post('https://api.telegram.org/bot'.config('services.telegram.bot_token').'/sendMessage', [
-                'chat_id' => config('services.telegram.chat_id'),
-                'text' => $text,
+        $request = Http::throw();
+
+        if (config('services.proxy')) {
+            $request = $request->withOptions([
+                'proxy' => config('services.proxy'),
             ]);
+        }
+
+        return $request->post('https://api.telegram.org/bot'.config('services.telegram.bot_token').'/sendMessage', [
+            'chat_id' => config('services.telegram.chat_id'),
+            'text' => $text,
+        ]);
     }
 }
