@@ -275,7 +275,14 @@
 						@csrf
                         <input type="text" class="appointment-form__input" placeholder="Имя" name="name" required>
                         <input type="tel" class="appointment-form__input" placeholder="+7 (999) 999-99-99" name="phone" id="phone" value="+7" required>
-                        <button class="appointment-form__submit button button--light" type="submit">Записаться</button>
+						<div id="captcha-container"></div>
+                        <button class="appointment-form__submit button button--light" type="submit">
+                            <span class="appointment-form__submit-label">Записаться</span>
+                            <svg class="appointment-form__submit-spinner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle class="appointment-form__submit-spinner-track" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                                <circle class="appointment-form__submit-spinner-head" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </button>
                     </form>
 
                     <p class="appointment__disclaimer">
@@ -283,27 +290,75 @@
                     </p>
                 </div>
 
+				<script src="https://smartcaptcha.cloud.yandex.ru/captcha.js?render=onload&onload=smartCaptchaAppointmentOnload" defer></script>
 				<script>
 					const form = document.getElementById('form');
-					const button = form.querySelector('.button');
+					const button = form.querySelector('.appointment-form__submit');
+					const submitLabel = button.querySelector('.appointment-form__submit-label');
+					const SUBMIT_TEXT_DEFAULT = 'Записаться';
+					const captchaClientKey = @json(config('services.ya_captcha.client_key'));
+					let captchaWidgetId;
+
+					window.smartCaptchaAppointmentOnload = function () {
+						if (!window.smartCaptcha || !captchaClientKey) {
+							return;
+						}
+						captchaWidgetId = window.smartCaptcha.render('captcha-container', {
+							sitekey: captchaClientKey,
+							invisible: true,
+							callback: onCaptchaToken,
+                            // test: true,
+						});
+					};
+
+					function onCaptchaToken(token) {
+						if (typeof token !== 'string' || !token.length) {
+							button.classList.remove('is-loading');
+							button.disabled = false;
+							submitLabel.textContent = SUBMIT_TEXT_DEFAULT;
+							alert('Не удалось пройти проверку');
+							return;
+						}
+						const formData = new FormData(form);
+						formData.set('smart-token', token);
+						let ok = false;
+						fetch('/application', {
+							method: 'POST',
+							body: formData,
+							headers: { 'X-Requested-With': 'XMLHttpRequest' },
+						})
+							.then((res) => {
+								if (!res.ok) {
+									alert('Произошла ошибка');
+								} else {
+									submitLabel.textContent = 'Заявка отправлена';
+									ok = true;
+								}
+							})
+							.catch(() => alert('Произошла ошибка'))
+							.finally(() => {
+								button.classList.remove('is-loading');
+								button.disabled = false;
+								if (!ok) {
+									submitLabel.textContent = SUBMIT_TEXT_DEFAULT;
+								}
+								form.reset();
+							});
+					}
 
 					form.addEventListener('submit', (e) => {
 						e.preventDefault();
+						if (!captchaClientKey) {
+							alert('Капча не настроена');
+							return;
+						}
+						if (!window.smartCaptcha || captchaWidgetId === undefined) {
+							alert('Проверка безопасности ещё загружается. Подождите несколько секунд.');
+							return;
+						}
+						button.classList.add('is-loading');
 						button.disabled = true;
-						const formData = new FormData(form);
-						fetch('/application', {
-							method: 'POST',
-							body: formData
-						}).then((res) => {
-							if (!res.ok) {
-								alert('Произошла ошибка');
-							} else {	
-								button.innerHTML = 'Заявка отправлена';
-							}
-							
-							button.disabled = false;
-							form.reset();
-						})
+						window.smartCaptcha.execute(captchaWidgetId);
 					});
 				</script>
 

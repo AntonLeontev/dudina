@@ -45,5 +45,50 @@
   // .appointment-form__submit
 
   &__submit {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: rem(44);
+    min-width: rem(160);
+
+    &.is-loading {
+      .appointment-form__submit-label {
+        display: none;
+      }
+
+      .appointment-form__submit-spinner {
+        display: block;
+      }
+    }
+  }
+
+  &__submit-label {
+    display: block;
+  }
+
+  &__submit-spinner {
+    display: none;
+    width: rem(22);
+    height: rem(22);
+    flex-shrink: 0;
+    color: inherit;
+    animation: appointment-form-spin 0.75s linear infinite;
+  }
+
+  &__submit-spinner-track {
+    opacity: 0.25;
+  }
+
+  &__submit-spinner-head {
+    stroke-dasharray: 31.4 31.4;
+    stroke-dashoffset: 24;
+    transform-origin: center;
+  }
+}
+
+@keyframes appointment-form-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
