@@ -275,7 +275,10 @@
 						@csrf
                         <input type="text" class="appointment-form__input" placeholder="Имя" name="name" required>
                         <input type="tel" class="appointment-form__input" placeholder="+7 (999) 999-99-99" name="phone" id="phone" value="+7" required>
-						<div id="captcha-container"></div>
+                        <div class="">
+                            <div id="captcha-container"></div>
+
+                        </div>
                         <button class="appointment-form__submit button button--light" type="submit">
                             <span class="appointment-form__submit-label">Записаться</span>
                             <svg class="appointment-form__submit-spinner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -297,6 +300,7 @@
 					const submitLabel = button.querySelector('.appointment-form__submit-label');
 					const SUBMIT_TEXT_DEFAULT = 'Записаться';
 					const captchaClientKey = @json(config('services.ya_captcha.client_key'));
+					const captchaInvisible = false;
 					let captchaWidgetId;
 
 					window.smartCaptchaAppointmentOnload = function () {
@@ -305,9 +309,8 @@
 						}
 						captchaWidgetId = window.smartCaptcha.render('captcha-container', {
 							sitekey: captchaClientKey,
-							invisible: true,
-							callback: onCaptchaToken,
-                            // test: true,
+							invisible: captchaInvisible,
+							callback: captchaInvisible ? onCaptchaToken : undefined,
 						});
 					};
 
@@ -343,6 +346,9 @@
 									submitLabel.textContent = SUBMIT_TEXT_DEFAULT;
 								}
 								form.reset();
+								if (window.smartCaptcha && captchaWidgetId !== undefined) {
+									window.smartCaptcha.reset(captchaWidgetId);
+								}
 							});
 					}
 
@@ -356,9 +362,20 @@
 							alert('Проверка безопасности ещё загружается. Подождите несколько секунд.');
 							return;
 						}
+						if (captchaInvisible) {
+							button.classList.add('is-loading');
+							button.disabled = true;
+							window.smartCaptcha.execute(captchaWidgetId);
+							return;
+						}
+						const token = window.smartCaptcha.getResponse(captchaWidgetId);
+						if (typeof token !== 'string' || !token.length) {
+							alert('Подтвердите, что вы не робот');
+							return;
+						}
 						button.classList.add('is-loading');
 						button.disabled = true;
-						window.smartCaptcha.execute(captchaWidgetId);
+						onCaptchaToken(token);
 					});
 				</script>
 
